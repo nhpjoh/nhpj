@@ -1,4 +1,4 @@
-package NLL_migration.skapaTestdata;
+package labb;
 
 import org.junit.Test;
 
