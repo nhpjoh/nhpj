@@ -1,0 +1,54 @@
+Applikationen arbetar mot en databas med ett antal tabeller:
+
+VINHYLLAN   // Denna tabell innehåller dryckerna
+
+VINHYLLAN_DRYVOR    // Denna tabell innehåller de druvor som ett visst vin har baserat på dryck_id
+
+VINHYLLAN_KODVERK   // Denna tabell innehåller olika kopplingar mellan värden
+
+VINHYLLAN_PASSAR_MATRATT    // Denna tabell innehåller maträtter kopplade till dryck_id:n
+
+VINHYLLAN_PASSAR_MATTYP     // Denna tabell innehåller matttyper (från systemet NÖT, FLÄSK, FISK VILT etc ..)
+
+VINHYLLAN_POSITION      // Denna tabell kopplar en en viss dryck till en plats i vinhyllan
+
+
+
+Att skapa dessa tabeller i HSQLdb:
+
+CREATE TABLE VINHYLLAN(DRYCK_ID INTEGER NOT NULL PRIMARY KEY,DRYCK_TYP VARCHAR(30) COLLATE SQL_TEXT_UCC NOT NULL,NAMN VARCHAR(50) COLLATE SQL_TEXT_UCC NOT NULL,DRYCK_KVALITET VARCHAR(50) COLLATE SQL_TEXT_UCC,BESKRIVNING VARCHAR(512) COLLATE SQL_TEXT_UCC,SOTMA INTEGER,FYLLIGHET INTEGER,STRAVHET INTEGER,FRUKTSTYRKA INTEGER,PRODUCENT VARCHAR(256) COLLATE SQL_TEXT_UCC,ARTAL TIMESTAMP,SISTA_DAG TIMESTAMP,LAND VARCHAR(256) COLLATE SQL_TEXT_UCC,DESTRIKT VARCHAR(256) COLLATE SQL_TEXT_UCC,ALKOHOLHALT DOUBLE,DOFT VARCHAR(256) COLLATE SQL_TEXT_UCC,FARG VARCHAR(256) COLLATE SQL_TEXT_UCC,PRIS DECIMAL(128),BILD VARCHAR(256) COLLATE SQL_TEXT_UCC,BETYG INTEGER,OMDOMME VARCHAR(256) COLLATE SQL_TEXT_UCC,SYSTEMET_ID VARCHAR(20) COLLATE SQL_TEXT_UCC,SYSTEMET_LINK VARCHAR(256) COLLATE SQL_TEXT_UCC)
+CREATE TABLE VINHYLLAN_DRUVOR(DRYCK_ID INTEGER NOT NULL,NAMN VARCHAR(256) COLLATE SQL_TEXT_UCC NOT NULL)
+CREATE TABLE VINHYLLAN_KODVERK(KODVERK_ID INTEGER NOT NULL PRIMARY KEY,TYP VARCHAR(30) COLLATE SQL_TEXT_UCC NOT NULL,TEXT VARCHAR(256) COLLATE SQL_TEXT_UCC,VARDE DECIMAL(128))
+CREATE TABLE VINHYLLAN_PASSAR_MATRATT(DRYCK_ID INTEGER NOT NULL,NAMN VARCHAR(256) COLLATE SQL_TEXT_UCC NOT NULL,KALLA VARCHAR(256) COLLATE SQL_TEXT_UCC,RECEPT VARCHAR(2048) COLLATE SQL_TEXT_UCC)
+CREATE TABLE VINHYLLAN_PASSAR_MATTYP(DRYCK_ID INTEGER NOT NULL,NAMN VARCHAR(20) COLLATE SQL_TEXT_UCC NOT NULL)
+CREATE TABLE VINHYLLAN_POSITION(POSITION INTEGER NOT NULL PRIMARY KEY, DRYCK_ID INTEGER NOT NULL)
+
+
+// Dryck
+
+    private Integer dryck_id;       // Ett unikt id från databasen
+    private String  dryck_typ;      // RÖTT_VIN,VITT_VIN, ROSE_VIN, ÖL, WISKEY, ROM ..etc..
+    private String  namn;           // Dryckens Namn
+    private String  dryck_kvalitet; // Reserva, Grand Reserva, VSOP, 18år etc... Dessa ändras beroände på dryck_typ
+    private String  beskrivning;    // Beskriving av dryck
+    private Integer sotma;          // 1-12(Systemets-klockan)
+    private Integer fyllighet;      // 1-12(Systemets-klockan)
+    private Integer stravhet;       // 1-12(Systemets-klockan)
+    private Integer fruktstyrka;    // 1-12(Systemets-klockan)
+    private String  producent;      // Tillverkare/producent
+    private Date    artal;          // Tillverkningsår
+    private Date    sista_dag;      // När blir drycken gammal 'typ när vin riskerar att bli vinäger'
+    private String  land;           // Tillverkningsland
+    private String  destrikt;       // Destrikt
+    private Float   alkoholhalt;    // Alkohålhalt i %
+    private String  doft;           // Doften
+    private String  farg;           // Färgen
+    private Float   pris;           // Inköpspris
+    private String  bild;           // länk till bild
+    private Integer betyg;          // Betyg
+    private String  omdomme;        // Omdömme av drycken
+    private String  systemet_id;    // beställningsnummer hos systemet
+    private String  systemet_link;  // Länk till till exempel systemets eller liknande
+    private List    passar_mattyp;  // Från systemet, Lamm, Nöt, Vilt, Fisk, Fläsk, Fågel etc.
+    private List    passar_matratt; // Egen lista på mat som man tycker att drycken passar till
+    private List    druvor;         // Lista med de druvor som drycken innehåller :-)
