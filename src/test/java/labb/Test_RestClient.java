@@ -31,8 +31,8 @@ public class Test_RestClient {
     @Test
     public void NetClientGetLabb() {
         try {
-//            URL url = new URL("https://petstore.swagger.io/v2/store/inventory");
-            URL url = new URL("https://nll-businesslogic-test1-deploy1-s7.test.ecp.systest.receptpartner.se/nll-businesslogic-0.0.7-29/rest/businesslogic/forskrivning"); // Funkar
+            URL url = new URL("https://petstore.swagger.io/v2/store/inventory");
+//            URL url = new URL("https://nll-businesslogic-test1-deploy1-s7.test.ecp.systest.receptpartner.se/nll-businesslogic-0.0.7-29/rest/businesslogic/forskrivning"); // Funkar
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -64,9 +64,9 @@ public class Test_RestClient {
     @Test
     public void NetClientGet() {
         try {
-//            URL url = new URL("https://petstore.swagger.io/v2/store/inventory");
-            URL url = new URL("https://test28.systest.receptpartner.se:19443/arkostore-mgr/rest/arkostore/" +
-                    "kontrolleraArbetsplatsGiltighet?arbetsplatskod=4000000000000"); // Funkar
+            URL url = new URL("https://petstore.swagger.io/v2/store/inventory");
+//            URL url = new URL("https://test28.systest.receptpartner.se:19443/arkostore-mgr/rest/arkostore/" +
+//                    "kontrolleraArbetsplatsGiltighet?arbetsplatskod=4000000000000"); // Funkar
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");

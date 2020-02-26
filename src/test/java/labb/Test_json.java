@@ -15,7 +15,7 @@ import org.junit.Test;
 import se.nhpj.json.TimeToken;
 
 /**
- * @author kundtest1
+ * @author nhpj
  */
 
 public class Test_json {
