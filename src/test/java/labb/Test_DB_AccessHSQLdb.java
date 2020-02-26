@@ -12,6 +12,9 @@ import se.nhpj.testdata.Person;
 import se.nhpj.testdata.Skatteverket;
 import se.nhpj.database.Utils;
 
+/*
+ * För att kunna teta detta måste databasen startas först
+ */
 
 public class Test_DB_AccessHSQLdb {
     @Test

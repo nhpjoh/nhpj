@@ -550,204 +550,206 @@ public abstract class BaseXML {
     * @return SOAP Message response object
     *    
     */
-    public static SOAPMessage sendPirrSoapRequest(String endpointUrl, SOAPMessage request)  {
-        try {
-            String authorization = new sun.misc.BASE64Encoder().encode(("pirruser:pirruser1").getBytes());
-            // borttaget för att få oAuth att funka ...
-//            MimeHeaders hd = request.getMimeHeaders();
-//            hd.addHeader("Authorization", "Basic " + authorization);
-            
-            final boolean isHttps = endpointUrl.toLowerCase().startsWith("https");
-            HttpsURLConnection httpsConnection = null;
-            // Open HTTPS connection
-            if (isHttps) {
-                // Create SSL context and trust all certificates
-                SSLContext sslContext = SSLContext.getInstance("SSL");
-                TrustManager[] trustAll = new TrustManager[] {new TrustAllCertificates()};
-                sslContext.init(null, trustAll, new java.security.SecureRandom());
-                // Set trust all certificates context to HttpsURLConnection
-                HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
+//    public static SOAPMessage sendPirrSoapRequest(String endpointUrl, SOAPMessage request)  {
+//        try {
+//            String authorization = new sun.misc.BASE64Encoder().encode(("pirruser:pirruser1").getBytes());
+//            // borttaget för att få oAuth att funka ...
+////            MimeHeaders hd = request.getMimeHeaders();
+////            hd.addHeader("Authorization", "Basic " + authorization);
+//
+//            final boolean isHttps = endpointUrl.toLowerCase().startsWith("https");
+//            HttpsURLConnection httpsConnection = null;
+//            // Open HTTPS connection
+//            if (isHttps) {
+//                // Create SSL context and trust all certificates
+//                SSLContext sslContext = SSLContext.getInstance("SSL");
+//                TrustManager[] trustAll = new TrustManager[] {new TrustAllCertificates()};
+//                sslContext.init(null, trustAll, new java.security.SecureRandom());
+//                // Set trust all certificates context to HttpsURLConnection
+//                HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
+//
+//                // Open HTTPS connection
+//                URL url = new URL(endpointUrl);
+//                httpsConnection = (HttpsURLConnection) url.openConnection();
+//
+//               // Trust all hosts
+//                httpsConnection.setHostnameVerifier(new TrustAllHosts());
+//                // Connect
+//                httpsConnection.connect();
+//            }
+//            // Send HTTP SOAP request and get response
+//            SOAPConnection soapConnection = SOAPConnectionFactory.newInstance().createConnection();
+//            SOAPMessage response = soapConnection.call(request, endpointUrl);
+//            // Close connection
+//            soapConnection.close();
+//            // Close HTTPS connection
+//            if (isHttps) {
+//                httpsConnection.disconnect();
+//            }
+//            return response;
+//        } catch (SOAPException | IOException
+//                | NoSuchAlgorithmException | KeyManagementException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        return null;
+//    }
 
-                // Open HTTPS connection
-                URL url = new URL(endpointUrl);
-                httpsConnection = (HttpsURLConnection) url.openConnection();
-
-               // Trust all hosts
-                httpsConnection.setHostnameVerifier(new TrustAllHosts());
-                // Connect
-                httpsConnection.connect();
-            }
-            // Send HTTP SOAP request and get response
-            SOAPConnection soapConnection = SOAPConnectionFactory.newInstance().createConnection();
-            SOAPMessage response = soapConnection.call(request, endpointUrl);
-            // Close connection
-            soapConnection.close();
-            // Close HTTPS connection
-            if (isHttps) {
-                httpsConnection.disconnect();
-            }
-            return response;
-        } catch (SOAPException | IOException
-                | NoSuchAlgorithmException | KeyManagementException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return null;
-    }    
 
 
+//// From PirrTestClient
+//    /**
+//     * Signs a String content with keystore and add double encoded base64 on top
+//     *
+//     * @param content - Stuff to be encode
+//     * @return - Returns encoded string
+//     */
+//    public String encode(String content) {
+//        String contentType = "application/xml";  // Set default ContentType
+//        Security.addProvider(new BouncyCastleProvider());
+//        String encodedText = "";
+//        byte[] data = signMessage(content, contentType);
+//        try {
+//            encodedText = new String(org.bouncycastle.util.encoders.Base64.encode(new String(org.bouncycastle.util.encoders.Base64.encode(data)).getBytes()), "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//        return encodedText;
+//    }
 
-// From PirrTestClient
-    /**
-     * Signs a String content with keystore and add double encoded base64 on top
-     *
-     * @param content - Stuff to be encode
-     * @return - Returns encoded string
-     */
-    public String encode(String content) {
-        String contentType = "application/xml";  // Set default ContentType
-        Security.addProvider(new BouncyCastleProvider());
-        String encodedText = "";
-        byte[] data = signMessage(content, contentType);
-        try {
-            encodedText = new String(org.bouncycastle.util.encoders.Base64.encode(new String(org.bouncycastle.util.encoders.Base64.encode(data)).getBytes()), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return encodedText;
-    }
+//    /***
+//     * Possible to provide ContentType, for test only)
+//     *
+//     * @param content -
+//     * @param ContentType -
+//     * @return - Returns encoded string
+//     * @throws java.io.UnsupportedEncodingException - not solved in method
+//     */
+//    public String encode(String content, String ContentType) throws UnsupportedEncodingException {
+//        Security.addProvider(new BouncyCastleProvider());
+//        String encodedText = "";
+//        byte[] data = signMessage(content, ContentType);
+//        try {
+//            encodedText = new String(org.bouncycastle.util.encoders.Base64.encode(new String(org.bouncycastle.util.encoders.Base64.encode(data)).getBytes()), "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//        return encodedText;
+//    }
 
-    /***
-     * Possible to provide ContentType, for test only)
-     *
-     * @param content - 
-     * @param ContentType - 
-     * @return - Returns encoded string
-     * @throws java.io.UnsupportedEncodingException - not solved in method
-     */
-    public String encode(String content, String ContentType) throws UnsupportedEncodingException {
-        Security.addProvider(new BouncyCastleProvider());
-        String encodedText = "";
-        byte[] data = signMessage(content, ContentType);
-        try {
-            encodedText = new String(org.bouncycastle.util.encoders.Base64.encode(new String(org.bouncycastle.util.encoders.Base64.encode(data)).getBytes()), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return encodedText;
-    }
+//    /**
+//     * Decode a message twice with base64
+//     *
+//     * @param text as String object
+//     * @return - Returnerar decoded string
+//     */
+//    public String decode(String text) {
+//        String decodedText = "";
+//        try {
+//            decodedText = new String(org.bouncycastle.util.encoders.Base64.decode(new String(org.bouncycastle.util.encoders.Base64.decode(text))), "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//        return decodedText;
+//    }
 
-    /**
-     * Decode a message twice with base64
-     *
-     * @param text as String object
-     * @return - Returnerar decoded string
-     */
-    public String decode(String text) {
-        String decodedText = "";
-        try {
-            decodedText = new String(org.bouncycastle.util.encoders.Base64.decode(new String(org.bouncycastle.util.encoders.Base64.decode(text))), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return decodedText;
-    }
+//    /**
+//     * Method for signing a message from file
+//     *
+//     * @param msgContent
+//     * @param ContentType
+//     * @return
+//     */
+//    private byte[] signMessage(String msgContent, String ContentType) {
+//        //FileInputStream xmlFile = null;
+//        try {
+//            String keystorePassword = "secret";
+//            String certFileAlias = "PIRR-testklient";
+//            String privateKeyAlias = "testklient-ext-keypair";
+//            String privateKeyPassword = "secret";
+//
+//            KeyStore keyStore = KeyStore.getInstance(KEYSTORE_TYPE, KEYSTORE_PROVIDER);
+//
+////            File keystoreFile = new File( _keystoreFile );
+////            File keystoreFile = new File("C:/keystore.bks");
+////            InputStream is = new FileInputStream(keystoreFile);
+//            InputStream is = BaseXML.class.getResourceAsStream("/soap/keystore.bks");
+//            keyStore.load(is, keystorePassword.toCharArray());
+//
+//            X509Certificate cert = (X509Certificate) keyStore.getCertificate(certFileAlias);
+//            ArrayList certsAndCRLs = new ArrayList();
+//            certsAndCRLs.add(cert);
+//            CertStore certStore = CertStore.getInstance("Collection",
+//                    new CollectionCertStoreParameters(certsAndCRLs),
+//                    KEYSTORE_PROVIDER);
+//            PrivateKey pkey = (PrivateKey) keyStore.getKey(privateKeyAlias,
+//                    privateKeyPassword.toCharArray());
+//
+//            SMIMESignedGenerator gen = new SMIMESignedGenerator();
+//
+//            gen.addSigner(pkey, cert, SMIMESignedGenerator.DIGEST_SHA1);
+//            gen.addCertificatesAndCRLs(certStore);
+//
+//            MimeBodyPart msg;
+//            byte[] content = msgContent.getBytes("UTF-8");
+//
+//            InternetHeaders ih = new InternetHeaders();
+//            ih.setHeader("Content-Type", ContentType);
+//            ih.setHeader("Content-Transfer-Encoding", "binary");
+//            msg = new MimeBodyPart(ih, content);
+//
+//            MimeMultipart mm = gen.generate(msg, KEYSTORE_PROVIDER);
+//
+//            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//            bos.write("Content-Type: ".getBytes());
+//            bos.write(mm.getContentType().getBytes());
+//            bos.write("\n".getBytes());
+//            bos.write("\n".getBytes());
+//            mm.writeTo(bos);
+//
+//            return bos.toByteArray();
+//        } catch (SMIMEException e) {
+//            try {
+//                throw e.getUnderlyingException();
+//            } catch (CMSException e2) {
+//                e2.printStackTrace();
+//            } catch (Exception e2) {
+//                e2.printStackTrace();
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            e.printStackTrace();
+//        }
+//        return "NOTHING SIGNED".getBytes();
+//    }
 
-    /**
-     * Method for signing a message from file
-     *
-     * @param msgContent
-     * @param ContentType
-     * @return
-     */
-    private byte[] signMessage(String msgContent, String ContentType) {
-        //FileInputStream xmlFile = null;
-        try {
-            String keystorePassword = "secret";
-            String certFileAlias = "PIRR-testklient";
-            String privateKeyAlias = "testklient-ext-keypair";
-            String privateKeyPassword = "secret";
 
-            KeyStore keyStore = KeyStore.getInstance(KEYSTORE_TYPE, KEYSTORE_PROVIDER);
-            
-//            File keystoreFile = new File( _keystoreFile );
-//            File keystoreFile = new File("C:/keystore.bks");
-//            InputStream is = new FileInputStream(keystoreFile);            
-            InputStream is = BaseXML.class.getResourceAsStream("/soap/keystore.bks");
-            keyStore.load(is, keystorePassword.toCharArray());
-
-            X509Certificate cert = (X509Certificate) keyStore.getCertificate(certFileAlias);
-            ArrayList certsAndCRLs = new ArrayList();
-            certsAndCRLs.add(cert);
-            CertStore certStore = CertStore.getInstance("Collection",
-                    new CollectionCertStoreParameters(certsAndCRLs),
-                    KEYSTORE_PROVIDER);
-            PrivateKey pkey = (PrivateKey) keyStore.getKey(privateKeyAlias,
-                    privateKeyPassword.toCharArray());
-
-            SMIMESignedGenerator gen = new SMIMESignedGenerator();
-
-            gen.addSigner(pkey, cert, SMIMESignedGenerator.DIGEST_SHA1);
-            gen.addCertificatesAndCRLs(certStore);
-
-            MimeBodyPart msg;
-            byte[] content = msgContent.getBytes("UTF-8");
-
-            InternetHeaders ih = new InternetHeaders();
-            ih.setHeader("Content-Type", ContentType);
-            ih.setHeader("Content-Transfer-Encoding", "binary");
-            msg = new MimeBodyPart(ih, content);
-
-            MimeMultipart mm = gen.generate(msg, KEYSTORE_PROVIDER);
-
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            bos.write("Content-Type: ".getBytes());
-            bos.write(mm.getContentType().getBytes());
-            bos.write("\n".getBytes());
-            bos.write("\n".getBytes());
-            mm.writeTo(bos);
-
-            return bos.toByteArray();
-        } catch (SMIMEException e) {
-            try {
-                throw e.getUnderlyingException();
-            } catch (CMSException e2) {
-                e2.printStackTrace();
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-        return "NOTHING SIGNED".getBytes();
-    }
-    /**
-     * This method uses SQL to get the OrdinationsId direct from the database
-     * @param ereceptid Created from Pirr when creates a new recepie
-     * @param OracleServiceName - ex. INT6 / PTRR 
-     * @return - Ett OrdinationsId
-     */
-    public static String getOrdinationsId( String ereceptid, String OracleServiceName ) {
-        Connection con = DB_Access.getConnection("jdbc:oracle:thin:@td02-scan.systest.receptpartner.se:1521/" + OracleServiceName, "ETCDBA", "ETCDBA");
-        String OrdinationsId = DB_Access.getStringValue(con, "select r.ID from RR_PROD.RECEPT r, RR_PROD.FORSKRORIG f where r.RRFORSKRORIGINAL = f.id and f.ERECRECEPTID = '" + ereceptid + "'", "ID");
-        DB_Access.closeConnection(con);
-      
-        return OrdinationsId;
-    }
+//    /**
+//     * This method uses SQL to get the OrdinationsId direct from the database
+//     * @param ereceptid Created from Pirr when creates a new recepie
+//     * @param OracleServiceName - ex. INT6 / PTRR
+//     * @return - Ett OrdinationsId
+//     */
+//    public static String getOrdinationsId( String ereceptid, String OracleServiceName ) {
+//        Connection con = DB_Access.getConnection("jdbc:oracle:thin:@td02-scan.systest.receptpartner.se:1521/" + OracleServiceName, "ETCDBA", "ETCDBA");
+//        String OrdinationsId = DB_Access.getStringValue(con, "select r.ID from RR_PROD.RECEPT r, RR_PROD.FORSKRORIG f where r.RRFORSKRORIGINAL = f.id and f.ERECRECEPTID = '" + ereceptid + "'", "ID");
+//        DB_Access.closeConnection(con);
+//
+//        return OrdinationsId;
+//    }
     
-    /**
-     * This method uses SQL to check if the patient is a DOS patient direct from the database
-     * @param personnummer - Ett personnummer
-     * @param OracleServiceName - ex. INT6 / PTRR
-     * @return - true/false
-     */
-    public static boolean isDosPatient( String personnummer, String OracleServiceName ) {
-        Boolean isdospatient = false;
-        Connection con = DB_Access.getConnection("jdbc:oracle:thin:@td02-scan.systest.receptpartner.se:1521/" + OracleServiceName, "ETCDBA", "ETCDBA");
-        String retVal = DB_Access.getStringValue(con, "SELECT COUNT(*) antal FROM RR_PROD.ORDINATIONSLISTA WHERE DOSUNDERLAGSVERSION IS NOT NULL AND PERSONNUMMER = '" + personnummer + "'", "antal");
-        DB_Access.closeConnection(con);
-        int antal = Integer.parseInt(retVal);
-        if (antal > 0) { isdospatient = true; }
-        return isdospatient;
-    }
+//    /**
+//     * This method uses SQL to check if the patient is a DOS patient direct from the database
+//     * @param personnummer - Ett personnummer
+//     * @param OracleServiceName - ex. INT6 / PTRR
+//     * @return - true/false
+//     */
+//    public static boolean isDosPatient( String personnummer, String OracleServiceName ) {
+//        Boolean isdospatient = false;
+//        Connection con = DB_Access.getConnection("jdbc:oracle:thin:@td02-scan.systest.receptpartner.se:1521/" + OracleServiceName, "ETCDBA", "ETCDBA");
+//        String retVal = DB_Access.getStringValue(con, "SELECT COUNT(*) antal FROM RR_PROD.ORDINATIONSLISTA WHERE DOSUNDERLAGSVERSION IS NOT NULL AND PERSONNUMMER = '" + personnummer + "'", "antal");
+//        DB_Access.closeConnection(con);
+//        int antal = Integer.parseInt(retVal);
+//        if (antal > 0) { isdospatient = true; }
+//        return isdospatient;
+//    }
 }
