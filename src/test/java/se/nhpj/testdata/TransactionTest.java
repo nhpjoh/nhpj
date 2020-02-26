@@ -35,7 +35,7 @@ public class TransactionTest {
         assertTrue("Något blev fel med tidtagningen(SECONDS): " + millis + " ska vara > 2",millis > 2);
         millis = transaction.getElapsedTime("Trans",Transaction.MINUTES);
         assertTrue("Något blev fel med tidtagningen (MINUTES): " + millis + " ska vara < 1",millis < 1);
-        String string = transaction.getElapsedTime("Trans");
+        String string = transaction.getElapsedTime("Trans").replace(',','.');  // Byter ut komma mot punkt
         assertTrue("Något blev fel med tidtagningen: " + string + " ska vara > 2000",(Float.valueOf(string)*1000) > 2000);
     }
 
