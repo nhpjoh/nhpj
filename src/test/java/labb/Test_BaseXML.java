@@ -450,15 +450,15 @@ public class Test_BaseXML {
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 // HamtaExpeditionsId ----------------------------------------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-        HamtaExpeditionsId hei = new HamtaExpeditionsId();
-        hei.insertXmlAfterTag("<soapenv:Header>", Tickets.getTicket( Tickets.APOTEKARE ));
-        hei.setStandardDefaultValues();
-        response = new SoapResponseXML( BaseXML.SoapResponseMsgToString( BaseXML.sendSoapRequest( hei.getSoapEndpointUrl(), BaseXML.getSoapMessageFromString( hei.getXML() ))));
-        hei.checkResponse(response);
-
-        expeditionsId = response.getTagValue("*//expeditionsId");
-
+//
+//        HamtaExpeditionsId hei = new HamtaExpeditionsId();
+//        hei.insertXmlAfterTag("<soapenv:Header>", Tickets.getTicket( Tickets.APOTEKARE ));
+//        hei.setStandardDefaultValues();
+//        response = new SoapResponseXML( BaseXML.SoapResponseMsgToString( BaseXML.sendSoapRequest( hei.getSoapEndpointUrl(), BaseXML.getSoapMessageFromString( hei.getXML() ))));
+//        hei.checkResponse(response);
+//
+//        expeditionsId = response.getTagValue("*//expeditionsId");
+//
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 // Godkänn Uttag ---------------------------------------------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -720,40 +720,40 @@ public class Test_BaseXML {
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 // HamtaHkdbKonto --------------------------------------------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-        HamtaHkdbKonto hhk = new HamtaHkdbKonto();
-        hhk.insertXmlAfterTag("<soapenv:Header>", Tickets.getTicket( Tickets.APOTEKARE ));
-        hhk.setStandardDefaultValues();
-        hhk.setPersonnummer(patient_pnr);
-
-        response = new SoapResponseXML( BaseXML.SoapResponseMsgToString( BaseXML.sendSoapRequest( hhk.getSoapEndpointUrl(), BaseXML.getSoapMessageFromString( hhk.getXML() ))));
-
-        hhk.checkResponse(response);
-
-        ackBrutto = response.getTagValue("*//innevPeriod/*/brutto");
-        periodStart = response.getTagValue("*//innevPeriod/start");
-        System.out.println("ackBrutto: " + ackBrutto);
-        System.out.println("periodStart: " + periodStart);
-
+//
+//        HamtaHkdbKonto hhk = new HamtaHkdbKonto();
+//        hhk.insertXmlAfterTag("<soapenv:Header>", Tickets.getTicket( Tickets.APOTEKARE ));
+//        hhk.setStandardDefaultValues();
+//        hhk.setPersonnummer(patient_pnr);
+//
+//        response = new SoapResponseXML( BaseXML.SoapResponseMsgToString( BaseXML.sendSoapRequest( hhk.getSoapEndpointUrl(), BaseXML.getSoapMessageFromString( hhk.getXML() ))));
+//
+//        hhk.checkResponse(response);
+//
+//        ackBrutto = response.getTagValue("*//innevPeriod/*/brutto");
+//        periodStart = response.getTagValue("*//innevPeriod/start");
+//        System.out.println("ackBrutto: " + ackBrutto);
+//        System.out.println("periodStart: " + periodStart);
+//
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 // Hämta prisuppgifter från vara -----------------------------------------------------------------------------------------------------------------------------
 // HämtaSubstitosion
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-        HamtaSubstitution hs = new HamtaSubstitution();
-        hs.insertXmlAfterTag("<soapenv:Header>", Tickets.getTicket( Tickets.APOTEKARE ));
-        hs.setStandardDefaultValues();
-        hs.setForskrivningsDatum();
-        hs.setNplPackageId(nplPackId);
-
-        response = new SoapResponseXML( BaseXML.SoapResponseMsgToString( BaseXML.sendSoapRequest( hs.getSoapEndpointUrl(), BaseXML.getSoapMessageFromString( hs.getXML() ))));
-
-        hs.checkResponse(response);
-
-        pris_aup = response.getTagValue("*//utbytesgruppArtiklar[1]/aktuellPeriodsForsaljningspris[1]/aktuelltForsaljningsPris[1]");
-        System.out.println("Priset: " + pris_aup);
+//
+//        HamtaSubstitution hs = new HamtaSubstitution();
+//        hs.insertXmlAfterTag("<soapenv:Header>", Tickets.getTicket( Tickets.APOTEKARE ));
+//        hs.setStandardDefaultValues();
+//        hs.setForskrivningsDatum();
+//        hs.setNplPackageId(nplPackId);
+//
+//        response = new SoapResponseXML( BaseXML.SoapResponseMsgToString( BaseXML.sendSoapRequest( hs.getSoapEndpointUrl(), BaseXML.getSoapMessageFromString( hs.getXML() ))));
+//
+//        hs.checkResponse(response);
+//
+//        pris_aup = response.getTagValue("*//utbytesgruppArtiklar[1]/aktuellPeriodsForsaljningspris[1]/aktuelltForsaljningsPris[1]");
+//        System.out.println("Priset: " + pris_aup);
 //        assertEquals("Fel pris tillbaka på "+ nplPackId,pris_aup,"204.11");
-
+//
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 // RegistreraHkdbTransaktion ---------------------------------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -795,34 +795,34 @@ public class Test_BaseXML {
 // UppdateraForsaljningOppenvardForskrivning -----------------------------------------------------------------------------------------------------------------
 // FOTA trans ------------------------------------------------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-       UppdateraForsaljningOppenvardForskrivning ufof = new UppdateraForsaljningOppenvardForskrivning();
-       ufof.insertXmlAfterTag("<soapenv:Header>", Tickets.getTicket( Tickets.APOTEKARE ));
-       ufof.setStandardDefaultValues();
-       ufof.setPersonnummer(patient_pnr);
-       ufof.setTagValue("*//klientinformation/system", GLN);
-       ufof.setTagValue("*//expoOrgNr", "5567634778");
-       ufof.setTagValue("*//aktorExpeditionsId", expeditionsId);
-       ufof.setTagValue("*//expeditionsId", expeditionsId);
-       ufof.setTagValue("*//expoButiksId", expeditionsId);
-       ufof.setTagValue("*//periodStartDatum", periodStart);
-       ufof.setTagValue("*//avhamtadDatum", CurrentDateTime.getTodaysDate() + "T00:00:00.000+01:00");
-       ufof.setTagValue("*//aktorTransId", expeditionsId);
-       ufof.setTagValue("*//aktorReceptId", "1");
-       ufof.setTagValue("*//aupExMomsAktor", pris_aup);
-       ufof.setTagValue("*//formanExMoms", pris_aup);
-       ufof.setTagValue("*//merkostnadExMoms", "0");
-       ufof.setTagValue("*//nplPackid", nplPackId);
-       ufof.setTagValue("*//receptId", expeditionsId);
-       ufof.setTagValue("*//utfardarDatum", CurrentDateTime.getTodaysDate() + "T00:00:00.000+01:00");
-       ufof.setTagValue("*//varuNr", varunr);
-
-       response = new SoapResponseXML( BaseXML.SoapResponseMsgToString( BaseXML.sendSoapRequest( ufof.getSoapEndpointUrl(), BaseXML.getSoapMessageFromString( ufof.getXML() ))));
-
-       System.out.println(response.getXML());
-
-       ufof.checkResponse(response);
-
+//
+//       UppdateraForsaljningOppenvardForskrivning ufof = new UppdateraForsaljningOppenvardForskrivning();
+//       ufof.insertXmlAfterTag("<soapenv:Header>", Tickets.getTicket( Tickets.APOTEKARE ));
+//       ufof.setStandardDefaultValues();
+//       ufof.setPersonnummer(patient_pnr);
+//       ufof.setTagValue("*//klientinformation/system", GLN);
+//       ufof.setTagValue("*//expoOrgNr", "5567634778");
+//       ufof.setTagValue("*//aktorExpeditionsId", expeditionsId);
+//       ufof.setTagValue("*//expeditionsId", expeditionsId);
+//       ufof.setTagValue("*//expoButiksId", expeditionsId);
+//       ufof.setTagValue("*//periodStartDatum", periodStart);
+//       ufof.setTagValue("*//avhamtadDatum", CurrentDateTime.getTodaysDate() + "T00:00:00.000+01:00");
+//       ufof.setTagValue("*//aktorTransId", expeditionsId);
+//       ufof.setTagValue("*//aktorReceptId", "1");
+//       ufof.setTagValue("*//aupExMomsAktor", pris_aup);
+//       ufof.setTagValue("*//formanExMoms", pris_aup);
+//       ufof.setTagValue("*//merkostnadExMoms", "0");
+//       ufof.setTagValue("*//nplPackid", nplPackId);
+//       ufof.setTagValue("*//receptId", expeditionsId);
+//       ufof.setTagValue("*//utfardarDatum", CurrentDateTime.getTodaysDate() + "T00:00:00.000+01:00");
+//       ufof.setTagValue("*//varuNr", varunr);
+//
+//       response = new SoapResponseXML( BaseXML.SoapResponseMsgToString( BaseXML.sendSoapRequest( ufof.getSoapEndpointUrl(), BaseXML.getSoapMessageFromString( ufof.getXML() ))));
+//
+//       System.out.println(response.getXML());
+//
+//       ufof.checkResponse(response);
+//
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 // RapporteraExpeditionLF ------ Ej om det är handelsvara ----------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
