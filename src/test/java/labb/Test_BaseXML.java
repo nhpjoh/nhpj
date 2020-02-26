@@ -168,49 +168,49 @@ public class Test_BaseXML {
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 // Skapa Ordination via Pirr --------------------------------(slf4j) logback ---------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-        Prescription recept = new Prescription();
-        recept.setStandardDefaultValues();
-        recept.setTodaysDates();
-        recept.setAllUUID();
-
-        // Skjukhus - vårinrättnig
-        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareAgentId[1]/Value", arbetsplats_kod);
-        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareAgentId[2]/Value", LK_kod);
-        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/HealthcarePerson/Name", LK_ename + " " + LK_fname);
-        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/HealthcarePerson/Qualification",LK_kategori);
-        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/Address/StructuredAddress/NumberOrNameOfHouse",arbetsplats_namn);
-        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/Address/StructuredAddress/StreetName",arbetsplats_adress);
-        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/Address/StructuredAddress/City",arbetsplats_ort);
-        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/Telecommunication",arbetsplats_telnr1);
-        // Läkare
-        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareAgentId[1]/Value", arbetsplats_kod);
-        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareAgentId[2]/Value", LK_kod);
-        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/HealthcarePerson/Name", LK_ename + " " + LK_fname);
-        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/HealthcarePerson/Qualification",LK_kategori);
-        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/Address/PostalCode",arbetsplats_postnr);
-        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/Address/StructuredAddress/NumberOrNameOfHouse",arbetsplats_namn);
-        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/Address/StructuredAddress/StreetName",arbetsplats_adress);
-        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/Address/StructuredAddress/City",arbetsplats_ort);
-        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/Telecommunication",arbetsplats_telnr1);
-        // Patient
-        recept.setTagValue("*//PatientMatchingInfo/Address/PostalCode",patient_postnr);
-        recept.setTagValue("*//PatientMatchingInfo/Address/StructuredAddress/StreetName",patient_adress);
-        recept.setTagValue("*//PatientMatchingInfo/Address/StructuredAddress/City",patient_ort);
-        recept.setTagValue("*//PatientMatchingInfo/Sex",patient_sex);
-        recept.setTagValue("*//FirstGivenName", patient_fnamn);
-        recept.setTagValue("*//FamilyName", patient_enamn);
-        recept.setPersonnummer(patient_pnr);
-
-        // Läkemedel
-        recept.setNplId(nplId);
-        recept.setNplPackId(nplPackId);
-        recept.setInstructionsForUse("Så här ska du ta din medusin");
-        recept.setAntalUttag(antalUttag);
-        recept.setNumberOfPackages(NumberOfPackages);
-
-        recept.setXML(recept.getXML());
-
+//
+//        Prescription recept = new Prescription();
+//        recept.setStandardDefaultValues();
+//        recept.setTodaysDates();
+//        recept.setAllUUID();
+//
+//        // Skjukhus - vårinrättnig
+//        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareAgentId[1]/Value", arbetsplats_kod);
+//        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareAgentId[2]/Value", LK_kod);
+//        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/HealthcarePerson/Name", LK_ename + " " + LK_fname);
+//        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/HealthcarePerson/Qualification",LK_kategori);
+//        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/Address/StructuredAddress/NumberOrNameOfHouse",arbetsplats_namn);
+//        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/Address/StructuredAddress/StreetName",arbetsplats_adress);
+//        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/Address/StructuredAddress/City",arbetsplats_ort);
+//        recept.setTagValue("*//MessageSender/HealthcareAgent/HealthcareParty/Telecommunication",arbetsplats_telnr1);
+//        // Läkare
+//        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareAgentId[1]/Value", arbetsplats_kod);
+//        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareAgentId[2]/Value", LK_kod);
+//        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/HealthcarePerson/Name", LK_ename + " " + LK_fname);
+//        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/HealthcarePerson/Qualification",LK_kategori);
+//        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/Address/PostalCode",arbetsplats_postnr);
+//        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/Address/StructuredAddress/NumberOrNameOfHouse",arbetsplats_namn);
+//        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/Address/StructuredAddress/StreetName",arbetsplats_adress);
+//        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/Address/StructuredAddress/City",arbetsplats_ort);
+//        recept.setTagValue("*//Prescriber/HealthcareAgent/HealthcareParty/Telecommunication",arbetsplats_telnr1);
+//        // Patient
+//        recept.setTagValue("*//PatientMatchingInfo/Address/PostalCode",patient_postnr);
+//        recept.setTagValue("*//PatientMatchingInfo/Address/StructuredAddress/StreetName",patient_adress);
+//        recept.setTagValue("*//PatientMatchingInfo/Address/StructuredAddress/City",patient_ort);
+//        recept.setTagValue("*//PatientMatchingInfo/Sex",patient_sex);
+//        recept.setTagValue("*//FirstGivenName", patient_fnamn);
+//        recept.setTagValue("*//FamilyName", patient_enamn);
+//        recept.setPersonnummer(patient_pnr);
+//
+//        // Läkemedel
+//        recept.setNplId(nplId);
+//        recept.setNplPackId(nplPackId);
+//        recept.setInstructionsForUse("Så här ska du ta din medusin");
+//        recept.setAntalUttag(antalUttag);
+//        recept.setNumberOfPackages(NumberOfPackages);
+//
+//        recept.setXML(recept.getXML());
+//
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------        
 // Extra rader till PIRR recepten ----------------------------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------        
@@ -232,34 +232,34 @@ public class Test_BaseXML {
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------        
 //  Sänder in receptet med WsGeneric ...
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------        
-        Wsgeneric pirr = new Wsgeneric();
-        //PirrHandler.setSoapEndpointUrl("https://pirr/pi-wsgeneric-1.3/wsgeneric");
-        pirr.setSoapEndpointUrl( PIRR_SERVICEENDPOINT + "/pi-wsgeneric-1.3/wsgeneric");
-        pirr.setDATA(pirr.encode(recept.getXML())); // Signerar och Base64 encoda receptet
-
-        // Detta tilllagt för att kunna köra utan ticket
-        SOAPMessage soapmessage = BaseXML.getSoapMessageFromString(pirr.getXML());
-        String authorization = new sun.misc.BASE64Encoder().encode(("pirruser:pirruser1").getBytes());
-        soapmessage.getMimeHeaders().addHeader("Authorization", "Basic " + authorization);
-
-        response = new SoapResponseXML( BaseXML.SoapResponseMsgToString( BaseXML.sendPirrSoapRequest( pirr.getSoapEndpointUrl(), soapmessage ) ) );
-
-        SoapResponseXML pirrRecept = new SoapResponseXML( pirr.decode( response.getTagValue("*//data") ) );  // Konvertera receptet tillbaka till läsbar text
-
-        System.out.println(pirrRecept.getTagValue("*//Description") + " - patient: " + patient_pnr);
-
-        String retCode = pirrRecept.getTagValue("*//Description").substring(0, 1);
-        if (!retCode.equals("0")) {
-            System.out.println("Stoppar på grund av fel! ");
-            System.out.println(pirrRecept.getXML());
-            exit(0);
-        }
-        System.out.println("PrescriptionSetId: " + pirrRecept.getTagValue("*//PrescriptionSetId"));
-        System.out.println("OrdinationsId: " + BaseXML.getOrdinationsId(pirrRecept.getTagValue("*//PrescriptionSetId"), "PTRR"));
-        System.out.println("Är det en DOS patient: " + BaseXML.isDosPatient(patient_pnr, "PTRR" ) + "\n");
-        String prescriptionSetId = pirrRecept.getTagValue("*//PrescriptionSetId");
-        ordId = BaseXML.getOrdinationsId(prescriptionSetId, "PTRR");
-
+//        Wsgeneric pirr = new Wsgeneric();
+//        //PirrHandler.setSoapEndpointUrl("https://pirr/pi-wsgeneric-1.3/wsgeneric");
+//        pirr.setSoapEndpointUrl( PIRR_SERVICEENDPOINT + "/pi-wsgeneric-1.3/wsgeneric");
+//        pirr.setDATA(pirr.encode(recept.getXML())); // Signerar och Base64 encoda receptet
+//
+//        // Detta tilllagt för att kunna köra utan ticket
+//        SOAPMessage soapmessage = BaseXML.getSoapMessageFromString(pirr.getXML());
+//        String authorization = new sun.misc.BASE64Encoder().encode(("pirruser:pirruser1").getBytes());
+//        soapmessage.getMimeHeaders().addHeader("Authorization", "Basic " + authorization);
+//
+//        response = new SoapResponseXML( BaseXML.SoapResponseMsgToString( BaseXML.sendPirrSoapRequest( pirr.getSoapEndpointUrl(), soapmessage ) ) );
+//
+//        SoapResponseXML pirrRecept = new SoapResponseXML( pirr.decode( response.getTagValue("*//data") ) );  // Konvertera receptet tillbaka till läsbar text
+//
+//        System.out.println(pirrRecept.getTagValue("*//Description") + " - patient: " + patient_pnr);
+//
+//        String retCode = pirrRecept.getTagValue("*//Description").substring(0, 1);
+//        if (!retCode.equals("0")) {
+//            System.out.println("Stoppar på grund av fel! ");
+//            System.out.println(pirrRecept.getXML());
+//            exit(0);
+//        }
+//        System.out.println("PrescriptionSetId: " + pirrRecept.getTagValue("*//PrescriptionSetId"));
+//        System.out.println("OrdinationsId: " + BaseXML.getOrdinationsId(pirrRecept.getTagValue("*//PrescriptionSetId"), "PTRR"));
+//        System.out.println("Är det en DOS patient: " + BaseXML.isDosPatient(patient_pnr, "PTRR" ) + "\n");
+//        String prescriptionSetId = pirrRecept.getTagValue("*//PrescriptionSetId");
+//        ordId = BaseXML.getOrdinationsId(prescriptionSetId, "PTRR");
+//
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------        
 // Extra anrop för att få ett dublett AFF-fel
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------        
