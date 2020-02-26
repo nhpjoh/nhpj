@@ -99,12 +99,12 @@ Test_testdata {
         System.out.println("Riktnummer: " + tfn.getRiktnummer("Testorten"));
     }
 
-    @Test
-    public void testSlumpaRader() {
-        int antal = 10;
-        for (int i = 0 ; i < antal ; i++ ) {
-            System.out.println( RndData.fromFile("K:\\Testcenter\\Patrik_OR\\SkapaVardtagareV1.csv") );
-        }
-    }
+//    @Test
+//    public void testSlumpaRader() {
+//        int antal = 10;
+//        for (int i = 0 ; i < antal ; i++ ) {
+//            System.out.println( RndData.fromFile("K:\\Testcenter\\Patrik_OR\\SkapaVardtagareV1.csv") );
+//        }
+//    }
 
 }
