@@ -23,7 +23,7 @@ public class RestThread extends Thread {
         for( int i=0 ; i < 100 ; i++) {
             transaction.start("Transaction");
 
-            response = br.getSSL("https://nll-kodverk-logic-s17-test1-deploy2.test.ecp.systest.receptpartner.se/kodverk/fhir/CodeSystem/nll-behandlingsorsak");
+            response = br.getSSL("https://petstore.swagger.io/v2/store/inventory");
 
             transaction.stop("Transaction");
             addIterations();
