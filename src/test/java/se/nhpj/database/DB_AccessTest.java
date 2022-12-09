@@ -47,4 +47,36 @@ public class DB_AccessTest {
 //        }
 //
 //    }
+
+    @Test
+    public void test_HSQLDB() {
+        Connection con;
+        con = DB_AccessHSQLdb.getConnection("jdbc:hsqldb:hsql://localhost/register", "SA", "");
+        String sql = "select * from person";
+        List lista = new ArrayList();
+        // Kör din SQL
+        ResultSet result = DB_Access.getResultSet(con,sql);
+
+        // Hämtar upp resultatet av din SQL
+        try {
+            while (result.next()) {
+                // lägger till en rad i taget till listan
+                lista.add(result.getString("PERSONNUMMER") + "," +
+                         result.getString("FORNAMN")  + "," +
+                         result.getString("EFTERNAMN"));
+            }
+            // Stänger databaskopplingen
+            DB_Access.closeConnection(con);
+
+        } catch (SQLException e) { // Krävs för att jobba med databaser :-)
+            e.printStackTrace();
+        }
+
+        // Skriver ut resultat listan
+        Iterator itr = lista.iterator();
+        while (itr.hasNext()) {
+            System.out.println(itr.next());
+        }
+
+    }
 }
