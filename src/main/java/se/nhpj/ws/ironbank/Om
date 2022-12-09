@@ -15,3 +15,18 @@ Databas
 
 GUI
     Hantera databas och dess innehåll
+
+
+Teknik
+    Databas
+        HSQLdb och någon annan
+    backend
+        tjänster (RESTFull och Soap) mot databaseb Apache Tomcat skrivs i java
+    frontend
+        javascript ... med tillhörande engine/server
+
+Lösningsförslag
+    Hantera databasinnehåll kan görs direkt via Tomcat tjänster mot databasen
+
+    Vilka tjänster mot databasen behövs??
+
