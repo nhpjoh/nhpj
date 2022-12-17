@@ -4,7 +4,9 @@ Vad ska man kunna göra
     Sätta in och ta ut pengar och andra saker
     Köpa/sälja saker (slavar, metaller, gift etc.)
     växla in saker
-    Betala saker
+    köpa saker
+    låna
+
 
 Databas
     Kundregister
@@ -12,14 +14,17 @@ Databas
     valutor
     valutakurser och dagspris på varor
     affären ... köpa och sälja saker
+        varuregister
+
 
 GUI
-    Hantera databas och dess innehåll
+    Hantera databas innehållet
+    Hantera banktjensterna
 
 
 Teknik
     Databas
-        HSQLdb och någon annan
+        SQL gratis databas, HSQLdb och eller någon annan
     backend
         tjänster (RESTFull och Soap) mot databaseb Apache Tomcat skrivs i java
     frontend
@@ -29,4 +34,5 @@ Lösningsförslag
     Hantera databasinnehåll kan görs direkt via Tomcat tjänster mot databasen
 
     Vilka tjänster mot databasen behövs??
+    Simpel rollbaserad inloggning
 

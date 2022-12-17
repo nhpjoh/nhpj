@@ -62,8 +62,8 @@ public class DB_AccessTest {
             while (result.next()) {
                 // lägger till en rad i taget till listan
                 lista.add(result.getString("PERSONNUMMER") + "," +
-                         result.getString("FORNAMN")  + "," +
-                         result.getString("EFTERNAMN"));
+                          result.getString("FORNAMN")  + "," +
+                          result.getString("EFTERNAMN"));
             }
             // Stänger databaskopplingen
             DB_Access.closeConnection(con);
