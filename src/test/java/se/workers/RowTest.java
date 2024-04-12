@@ -1,6 +1,7 @@
 package se.workers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.Assert;
 import org.junit.Test;
 import se.workers.transaktionlogger.Row;

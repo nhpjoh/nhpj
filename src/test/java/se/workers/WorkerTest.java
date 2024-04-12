@@ -12,6 +12,6 @@ public class WorkerTest {
         workers.setStartPace(700);
         workers.setTransactionLogFile("myWorkers1.json");
         workers.setTransactionLogging(true);
-        workers.startWorker("se.workers.myWorker");
+        workers.startWorker("se.workers.myWorkerCpy");
     }
 }
