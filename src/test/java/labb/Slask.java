@@ -23,7 +23,8 @@ public class Slask {
 
     @Test
     public void test() {
-        Float f = new Float(2.07023);
+        Float f;
+        f = Float.valueOf(2.07023f);
         String strFloat = String.format("%.3f", f);
         System.out.println(strFloat); // print 2.00
 
